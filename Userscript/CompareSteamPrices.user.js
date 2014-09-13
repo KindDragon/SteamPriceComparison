@@ -1,18 +1,22 @@
 // ==UserScript==
 // @name        Steam Price Comparison - Unpowered edition
-// @version     2.4.4
+// @version     2.4.5
 // @namespace   http://steamunpowered.eu/comparison-script/
 // @description Displays prices from all regions in the Steam store and convert them to your local currency
 // @copyright   2011+, KindDragon; 2010+, Zuko; Original author: Tor (http://code.google.com/p/steam-prices/)
-// @homepage    http://userscripts.org/scripts/show/149928
-// @update	2.4.4 Russian price detection fixed. Settings now stored in GM settings.
-// @update	2.4.3 Price "N/A" fixed. Opera support improved.
-// @update	2.4.1 Page price detection fixed.
-// @update	2.4.0 Support for CIS countries added. Code highly refactored. Auto-detecting used price in page. 
-// @update	2.3.3 Brazilian prices support added.
-// @update	2.3.2 Sale page support added.
-// @update	2.3.1 Page formating fixed in some cases.
-// @update	2.3.0 Script fixed after site changes.
+// @homepage    https://greasyfork.org/scripts/3618-steam-price-comparison-unpowered-edition
+// @updateURL   https://greasyfork.org/scripts/3618-steam-price-comparison-unpowered-edition/code/Steam%20Price%20Comparison%20-%20Unpowered%20edition.meta.js
+// @downloadURL https://greasyfork.org/scripts/3618-steam-price-comparison-unpowered-edition/code/Steam%20Price%20Comparison%20-%20Unpowered%20edition.user.js
+// @update  2.4.5 WebSite changed to https://greasyfork.org/.
+// @update  2.4.4 Russian price detection fixed. Settings now stored in GM settings.
+// @update  2.4.3 Price "N/A" fixed. Opera support improved.
+// @update  2.4.1 Page price detection fixed.
+// @update  2.4.0 Support for CIS countries added. Code highly refactored. Auto-detecting used price in page.
+// @update  2.3.3 Brazilian prices support added.
+// @update  2.3.2 Sale page support added.
+// @update  2.3.1 Page formating fixed in some cases.
+// @update  2.3.0 Script fixed after site changes.
+// @icon        data:image/gif;base64,R0lGODlhIAAgAPcAAAAAAAAAAQEAAgIAAwACAAECAQECAgICAwEABAIBBQMCBAICBQIDBgAEAwMEBgIEBwQDBQQEBgYGBgQGBwIDCQQFCAUECQYFCgUHCAQGCQYHCgYHCwYHDAQHDgUHDwMIDQcJCQYICwcKCgcIDAcIDQUJDgYJDwYLDQkHCQoGCgwFCQ8GDQgJDAgIDQkIDgYJEAQJEQcKEAYMFQQPGAoKEggLFQoMEQkNEwgMFAsOFAkPGAoQFQkQFwoRGAoRGQgQGgwTGw8VHxATHxEUGhMXHBYXHg4RIA8YIg4bLBEaIxEZJhIaJhUZIBQYIRccIRYcKhocJBIgMBooMiYTHCoVHCUbIz0ZJiEjJyImKiIlLSInLCYmKiQnKygqLyQpMScvOyksMiksMykvNy0vNS4wNS8wNygxPCswPiwzOzE0OjI2OzI3PTU3OzQ6PyQxQi86RTM5QjY7QDQ8RTg8QDk8RDs+RjE/UD1ARz9CRz5ERz9BSD9CSjxDSzlIWUoiLUgqOVggNUA/R3ErQ0BDS0FFTUJGTkVIT0ZKT0ZJUEBPX0ZPW0pOVEpOVk1QVU5RV09SV09RWlFWWVZTWVVZXFZZXVVaXVVaXlZcXUVSY0lZZ05edlJXY1VYYFVZZFVfa1lcZFpdZVpeZVtfZl9ial9kal5lb1pndFtsfF9sfGBjamFkamBka2Blbmpxe21ye3NyeXJ1fHR3fnF4e3R4fW15i3V7hnl8hH1/iXuBhX2AhnyAh32BiH2CiIGGioGEjYGIj4OLlI6Vmo+WnZeYnZKaoZWcpqevuKWvuqiutKWwt62zuq20vK22vrKyubO2vbC3vrS2vba6vrW8vrO3wrW7w7e8wra8xrq9w7m/w7m/xbrAwrnAx8LFzMDFzsPM0dLW29ba3Nfd39jZ2djb3NTa4OLk6OXn6+fo5+Lo6ubp6e7z8/X29gAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAEAAP8ALAAAAAAgACAAAAj/ACUEAECwoMGDCBMGEJiwoUOEAx9KnEixosWLGDNq3Mix4QAEAUKKFClAQMSRBEeGTClgwICSARAkSFDyYwKQAFyaDDDAQICWB0oCQEAjzyUtJeJYqhQph4lGlCaBWXCgyKEYBjLoAfPByaMwXS4EWKCK3DFiOlx5S5esiRJz25htctChlbovDXxokxYFGLo3hiwIgNDLmiYpJWSg6oaEwhJztDIdMWAkm7haHoBgW3eq3LkQEBYIWOClGLdpQx54gvYjQJJv1IxBYXAmnKRoQnoocwZu2bgIIheIsdPnGRMKiobNGBCkWSI3RGCUioasmhkewUwJw3QtQkoFhHzxsmJkwwIaUi8i7JCF69YdHKzkLOnE54YoODWe5FqQksGeMXMQcsUWeAQyBRVWVAFJGWvUgYgaWCzSBheOsMAGGWlMUFAFsYRBhy2cfPLLK4D4IcgfqXACCiy2hDLILqsUoksWozAyCwYFHSACBxuQMAIJLpywAgoqpPBACEhqkEEIGmzQggskcDACCAYUFAABBhVQQEhaEqCSSAV0JOaYZJZp5plopqnmmmtGdOZCbpK5UEAAOw==
 // @license     MIT License; http://www.opensource.org/licenses/mit-license.php
 // @include     http://store.steampowered.com/app/*
 // @include     https://store.steampowered.com/app/*
@@ -26,8 +30,9 @@
 // @match       https://store.steampowered.com/sub/*
 // @match       http://store.steampowered.com/sale/*
 // @match       https://store.steampowered.com/sale/*
-// @grant       none
-// @require     https://userscripts.org/scripts/source/145813.user.js
+// @grant       GM_getValue
+// @grant       GM_setValue
+// @grant       GM_listValues
 // ==/UserScript==
 
 // To install save script to disk under name CompareSteamPrices.user.js and then open this file in Firefox
@@ -55,15 +60,15 @@
 // first time init, you can changes this values in about:config page
 if (typeof GM_getValue("showYourLocalCurrency") === "undefined")
 {
-	GM_setValue("showYourLocalCurrency", true);
-	GM_setValue("showUSPrice", true);
-	GM_setValue("showUKPrice", true);
-	GM_setValue("showTieredEuPrices", true);
-	GM_setValue("showAUPrice", true);
-	GM_setValue("showRUPrice", true);
-	GM_setValue("showCISPrice", true);
-	GM_setValue("showBRPrice", true);
-	GM_setValue("usVat", 0);
+    GM_setValue("showYourLocalCurrency", true);
+    GM_setValue("showUSPrice", true);
+    GM_setValue("showUKPrice", true);
+    GM_setValue("showTieredEuPrices", true);
+    GM_setValue("showAUPrice", true);
+    GM_setValue("showRUPrice", true);
+    GM_setValue("showCISPrice", true);
+    GM_setValue("showBRPrice", true);
+    GM_setValue("usVat", 0);
 }
 
 //If set to true, prices converted to your local currency will be displayed
@@ -201,33 +206,33 @@ function SteamPage(countryName, countryCode, currencyCode, show, valuepattern, v
         var countryName = tiersEqual ? this.globalCountryName : this.countryName;
         var spanId = this.countryCode + "_" + i;
         var html = countryName + ": " + this.priceHtml;
-		if (this.price)
-		{
-			if (this.vat > 0)
-				html += " (inc. " + this.vat + "% VAT)";
-			if (showYourLocalCurrency)
-				html +=  " <span id='" + spanId + "' style='font-weight: bold;'>" + 
-					(this.currencyCode != yourLocalCurrency ? this.price : "") + "</span>";
-		}
-		if (first)
-			pricenode.innerHTML = html;
-		else
-			pricenode.innerHTML += "<br>\n" + html;
-		if (this.price)
-		{
-			if (showYourLocalCurrency && this.currencyCode != yourLocalCurrency) {
-				var tmp0 = document.createElement("script");
-				tmp0.setAttribute("type", "text/javascript");
-				tmp0.innerHTML = "var node = document.getElementById('" + spanId + "');" +
-					"node.innerHTML = \"(\" + " + getConvFunction(this.currencyCode, "node") + " + \" " + yourLocalCurrency;
-				if (this.vat > 0)
-					tmp0.innerHTML += " inc. " + this.vat + "% VAT";
-				tmp0.innerHTML += ")\";";
-				document.body.insertBefore(tmp0, someNode);
-			}
-			if (baseCountry.countryCode != this.countryCode)
-				createGetDifferenceScript(spanId, this.currencyCode, baseCountry.price, this.price);
-		}
+        if (this.price)
+        {
+            if (this.vat > 0)
+                html += " (inc. " + this.vat + "% VAT)";
+            if (showYourLocalCurrency)
+                html +=  " <span id='" + spanId + "' style='font-weight: bold;'>" + 
+                    (this.currencyCode != yourLocalCurrency ? this.price : "") + "</span>";
+        }
+        if (first)
+            pricenode.innerHTML = html;
+        else
+            pricenode.innerHTML += "<br>\n" + html;
+        if (this.price)
+        {
+            if (showYourLocalCurrency && this.currencyCode != yourLocalCurrency) {
+                var tmp0 = document.createElement("script");
+                tmp0.setAttribute("type", "text/javascript");
+                tmp0.innerHTML = "var node = document.getElementById('" + spanId + "');" +
+                    "node.innerHTML = \"(\" + " + getConvFunction(this.currencyCode, "node") + " + \" " + yourLocalCurrency;
+                if (this.vat > 0)
+                    tmp0.innerHTML += " inc. " + this.vat + "% VAT";
+                tmp0.innerHTML += ")\";";
+                document.body.insertBefore(tmp0, someNode);
+            }
+            if (baseCountry.countryCode != this.countryCode)
+                createGetDifferenceScript(spanId, this.currencyCode, baseCountry.price, this.price);
+        }
     };
 }
 
@@ -240,14 +245,14 @@ var brvaluepattern = new RegExp(/&#82;&#36; ([\d,]+)/i);
 
 var pageCurrency = null;
 
-var us	= new SteamPage('US',		'us', 'USD', showUSPrice, usvaluepattern, usVat);
-var uk	= new SteamPage('UK',		'uk', 'GBP', showUKPrice, ukvaluepattern, 0);
-var eu2	= new SteamPage('EU Tier 2', tier2cc, 'EUR', showTieredEuPrices, euvaluepattern, 0);
-var eu1	= new SteamPage('EU Tier 1', tier1cc, 'EUR', showTieredEuPrices, euvaluepattern, 0, 'EU', eu2);
-var au	= new SteamPage('AU',		'au', 'USD', showAUPrice, auvaluepattern, 0);
-var ru	= new SteamPage('RU',		'ru', 'RUB', showRUPrice, ruvaluepattern, 0);
-var cis	= new SteamPage('CIS',		CIScc, 'USD', showCISPrice, auvaluepattern, 0);
-var br	= new SteamPage('BR',		'br', 'BRL', showBRPrice, brvaluepattern, 0);
+var us  = new SteamPage('US',       'us', 'USD', showUSPrice, usvaluepattern, usVat);
+var uk  = new SteamPage('UK',       'uk', 'GBP', showUKPrice, ukvaluepattern, 0);
+var eu2 = new SteamPage('EU Tier 2', tier2cc, 'EUR', showTieredEuPrices, euvaluepattern, 0);
+var eu1 = new SteamPage('EU Tier 1', tier1cc, 'EUR', showTieredEuPrices, euvaluepattern, 0, 'EU', eu2);
+var au  = new SteamPage('AU',       'au', 'USD', showAUPrice, auvaluepattern, 0);
+var ru  = new SteamPage('RU',       'ru', 'RUB', showRUPrice, ruvaluepattern, 0);
+var cis = new SteamPage('CIS',      CIScc, 'USD', showCISPrice, auvaluepattern, 0);
+var br  = new SteamPage('BR',       'br', 'BRL', showBRPrice, brvaluepattern, 0);
 
 var baseCountry = us;
 var baseCurrency = baseCountry.currencyCode;
@@ -269,37 +274,37 @@ function CurrencyPattern(valuepattern, currencyCode) {
     this.currency = currencyCode;
 }
 
-var valuepatterns = [ 
-	new CurrencyPattern(new RegExp(/\u00A3([\d\.]+)/i), 'GBP'),
-	new CurrencyPattern(new RegExp(/([\d,-]+)\u20AC/i), 'EUR'),
-	new CurrencyPattern(new RegExp(/\$([\d\.]+)[\s]USD/i), 'USD'),
-	new CurrencyPattern(new RegExp(/([\d\.]+) p\u0443\u0431./i), 'RUB'),
-	new CurrencyPattern(new RegExp(/R\$ ([\d,]+)/i), 'BRL'),
-	new CurrencyPattern(new RegExp(/\$([\d\.]+)/i), 'USD')
+var valuepatterns = [
+    new CurrencyPattern(new RegExp(/\u00A3([\d\.]+)/i), 'GBP'),
+    new CurrencyPattern(new RegExp(/([\d,-]+)\u20AC/i), 'EUR'),
+    new CurrencyPattern(new RegExp(/\$([\d\.]+)[\s]USD/i), 'USD'),
+    new CurrencyPattern(new RegExp(/([\d\.]+) p\u0443\u0431./i), 'RUB'),
+    new CurrencyPattern(new RegExp(/R\$ ([\d,]+)/i), 'BRL'),
+    new CurrencyPattern(new RegExp(/\$([\d\.]+)/i), 'USD')
 ];
 
 function detectCurrency(price)
 {
-	if (pageCurrency != null)
-		return;
-	price = price.replace(/^\s+|\s+$/g, "");
-	for (var i = 0; i < valuepatterns.length; i++)
-		if (valuepatterns[i].pattern.exec(price))
-		{
-			pageCurrency = valuepatterns[i].currency;
-			if (yourLocalCurrency == null)
-				yourLocalCurrency = pageCurrency;
-			return;
-		}
+    if (pageCurrency != null)
+        return;
+    price = price.replace(/^\s+|\s+$/g, "");
+    for (var i = 0; i < valuepatterns.length; i++)
+        if (valuepatterns[i].pattern.exec(price))
+        {
+            pageCurrency = valuepatterns[i].currency;
+            if (yourLocalCurrency == null)
+                yourLocalCurrency = pageCurrency;
+            return;
+        }
 }
 
 //Test the URL to see if we're on a game page
 if (urlGamePattern.test(document.documentURI) || urlSalePattern.test(document.documentURI))
 {
-	if (document.body)
-		init()
-	else
-		window.addEventListener('DOMContentLoaded',init,false);
+    if (document.body)
+        init()
+    else
+        window.addEventListener('DOMContentLoaded',init,false);
 }
 
 function init()
@@ -311,7 +316,7 @@ function init()
     //external javascript files. These will help with currency conversion.
     for (var i = 0; i < pages.length; i++)
         if (pages[i].show)
-            AddExchangeRateScript(baseCurrency, pages[i].currencyCode, false);	
+            AddExchangeRateScript(baseCurrency, pages[i].currencyCode, false);  
 
     var game_purchase_price = false;
     var discount_final_price = false;
@@ -322,7 +327,7 @@ function init()
             game_purchase_price = true;
             pricenodes.push(divnodes[i]);
             originalprices.push(divnodes[i].innerHTML);
-			detectCurrency(divnodes[i].innerHTML);
+            detectCurrency(divnodes[i].innerHTML);
             divnodes[i].innerHTML +=
             "<br/><span style='color: rgb(136, 136, 136);'>Collecting data...</span>"
             divnodes[i].style.textAlign = "left";
@@ -331,7 +336,7 @@ function init()
             if (showYourLocalCurrency && pageCurrency != yourLocalCurrency) {
                 pricenodes_conly.push(divnodes[i]);
                 originalprices_conly.push(divnodes[i].innerHTML);
-				detectCurrency(divnodes[i].innerHTML);
+                detectCurrency(divnodes[i].innerHTML);
                 divnodes[i].innerHTML +=
                 "<span style='color: rgb(136, 136, 136);'>Collecting data...</span>"
                 divnodes[i].style.textAlign = "left";
@@ -341,14 +346,14 @@ function init()
                 discount_final_price = true;
                 pricenodes.push(divnodes[i]);
                 originalprices.push(divnodes[i].innerHTML);
-				detectCurrency(divnodes[i].innerHTML);
+                detectCurrency(divnodes[i].innerHTML);
                 divnodes[i].innerHTML +=
                 "<br/><span style='color: rgb(136, 136, 136);'>Collecting data...</span>"
                 divnodes[i].style.textAlign = "left";
             } else if (showYourLocalCurrency && pageCurrency != yourLocalCurrency) {
                 pricenodes_conly.push(divnodes[i]);
                 originalprices_conly.push(divnodes[i].innerHTML);
-				detectCurrency(divnodes[i].innerHTML);
+                detectCurrency(divnodes[i].innerHTML);
                 divnodes[i].innerHTML +=
                 "<span style='color: rgb(136, 136, 136);'> Collecting data...</span>"
                 divnodes[i].style.textAlign = "right";
@@ -356,12 +361,12 @@ function init()
         }
     }
 
-	if (showYourLocalCurrency) {
-		for (var j = 0; j < pages.length; j++)
-			if (pages[j].show)
-				AddExchangeRateScript(pages[j].currencyCode, yourLocalCurrency, true);
-		AddExchangeRateScript(pageCurrency, yourLocalCurrency, true);
-	}
+    if (showYourLocalCurrency) {
+        for (var j = 0; j < pages.length; j++)
+            if (pages[j].show)
+                AddExchangeRateScript(pages[j].currencyCode, yourLocalCurrency, true);
+        AddExchangeRateScript(pageCurrency, yourLocalCurrency, true);
+    }
 
     //If the current page contains a price,
     //start downloading regional versions of this page
@@ -467,7 +472,7 @@ function stateChanged() {
         "  if (localPrice == usdConverted) {lessmore = 'prices are equal'; return ' (' + lessmore + ')';} \n" +
         "  else if (localPrice > usdConverted) {lessmore = 'higher';}\n" +
         "  else {lessmore = 'lower';}\n" +
-        "  return ' (' + Math.round(diff) + '% ' + lessmore + ')';}\n";	
+        "  return ' (' + Math.round(diff) + '% ' + lessmore + ')';}\n"; 
 
     var calculatescript = document.createElement("script");
     calculatescript.setAttribute("type", "text/javascript");
@@ -480,36 +485,36 @@ function stateChanged() {
     document.body.insertBefore(calculatescript, someNode);
 
     if (showYourLocalCurrency && pageCurrency != yourLocalCurrency) {
-		//For DLC on game page
-		var mypriceHtml_conly;
-		var myprice_conly;
+        //For DLC on game page
+        var mypriceHtml_conly;
+        var myprice_conly;
 
-		for (i = 0; i < pricenodes_conly.length; i++) {
-			try {
-				var myvaluepattern_conly = new RegExp(/([\d]+([,\.](\d\d|--))?)/i);
-				mypriceHtml_conly = originalprices_conly[i];
-				myprice_conly = parseFloat(myvaluepattern_conly.exec(originalprices_conly[i])[1].replace(",", ".").replace("--", "00"));
-			}
-			catch(err) {
-				if (!mypriceHtml_conly || mypriceHtml_conly.length == 0)
-					mypriceHtml_conly = "N/A";
-				myprice_conly = null;
-			}
-			if (showYourLocalCurrency) {
-				pricenodes_conly[i].innerHTML = mypriceHtml_conly + " <span id='dlc" + i + "' style='font-weight: bold; color: rgb(136, 136, 136);'>" + myprice_conly + "</span>";	  
-				var dlc00 = document.createElement("script");
-				dlc00.setAttribute("type", "text/javascript");
-				dlc00.innerHTML = "var dlc = document.getElementById('dlc" + i + "');" + 
-				"dlc.innerHTML = \"(\" + " + getConvFunction(pageCurrency, "dlc") + " + \" " + yourLocalCurrency + ")\";"; 
-				document.body.insertBefore(dlc00, someNode);
-			}
-		}
-	}
+        for (i = 0; i < pricenodes_conly.length; i++) {
+            try {
+                var myvaluepattern_conly = new RegExp(/([\d]+([,\.](\d\d|--))?)/i);
+                mypriceHtml_conly = originalprices_conly[i];
+                myprice_conly = parseFloat(myvaluepattern_conly.exec(originalprices_conly[i])[1].replace(",", ".").replace("--", "00"));
+            }
+            catch(err) {
+                if (!mypriceHtml_conly || mypriceHtml_conly.length == 0)
+                    mypriceHtml_conly = "N/A";
+                myprice_conly = null;
+            }
+            if (showYourLocalCurrency) {
+                pricenodes_conly[i].innerHTML = mypriceHtml_conly + " <span id='dlc" + i + "' style='font-weight: bold; color: rgb(136, 136, 136);'>" + myprice_conly + "</span>";    
+                var dlc00 = document.createElement("script");
+                dlc00.setAttribute("type", "text/javascript");
+                dlc00.innerHTML = "var dlc = document.getElementById('dlc" + i + "');" + 
+                "dlc.innerHTML = \"(\" + " + getConvFunction(pageCurrency, "dlc") + " + \" " + yourLocalCurrency + ")\";"; 
+                document.body.insertBefore(dlc00, someNode);
+            }
+        }
+    }
 
     var mypriceHtml;
     var myprice;
 
-    for (i=0; i<pricenodes.length; i++) {	
+    for (i=0; i<pricenodes.length; i++) {   
         try {
             var myvaluepattern = new RegExp(/([\d]+([,\.](\d\d|--))?)/i);
             mypriceHtml = originalprices[i];

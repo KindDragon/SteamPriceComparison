@@ -1,18 +1,22 @@
 // ==UserScript==
 // @name        Steam Price Comparison - Unpowered edition
-// @version     2.4.4
+// @version     2.4.5
 // @namespace   http://steamunpowered.eu/comparison-script/
 // @description Displays prices from all regions in the Steam store and convert them to your local currency
 // @copyright   2011+, KindDragon; 2010+, Zuko; Original author: Tor (http://code.google.com/p/steam-prices/)
-// @homepage    http://userscripts.org/scripts/show/149928
+// @homepage    https://greasyfork.org/scripts/3618-steam-price-comparison-unpowered-edition
+// @updateURL   https://greasyfork.org/scripts/3618-steam-price-comparison-unpowered-edition/code/Steam%20Price%20Comparison%20-%20Unpowered%20edition.meta.js
+// @downloadURL https://greasyfork.org/scripts/3618-steam-price-comparison-unpowered-edition/code/Steam%20Price%20Comparison%20-%20Unpowered%20edition.user.js
+// @update  2.4.5 WebSite changed to https://greasyfork.org/.
 // @update  2.4.4 Russian price detection fixed. Settings now stored in GM settings.
 // @update  2.4.3 Price "N/A" fixed. Opera support improved.
 // @update  2.4.1 Page price detection fixed.
-// @update  2.4.0 Support for CIS countries added. Code highly refactored. Auto-detecting used price in page. 
+// @update  2.4.0 Support for CIS countries added. Code highly refactored. Auto-detecting used price in page.
 // @update  2.3.3 Brazilian prices support added.
 // @update  2.3.2 Sale page support added.
 // @update  2.3.1 Page formating fixed in some cases.
 // @update  2.3.0 Script fixed after site changes.
+// @icon        data:image/gif;base64,R0lGODlhIAAgAPcAAAAAAAAAAQEAAgIAAwACAAECAQECAgICAwEABAIBBQMCBAICBQIDBgAEAwMEBgIEBwQDBQQEBgYGBgQGBwIDCQQFCAUECQYFCgUHCAQGCQYHCgYHCwYHDAQHDgUHDwMIDQcJCQYICwcKCgcIDAcIDQUJDgYJDwYLDQkHCQoGCgwFCQ8GDQgJDAgIDQkIDgYJEAQJEQcKEAYMFQQPGAoKEggLFQoMEQkNEwgMFAsOFAkPGAoQFQkQFwoRGAoRGQgQGgwTGw8VHxATHxEUGhMXHBYXHg4RIA8YIg4bLBEaIxEZJhIaJhUZIBQYIRccIRYcKhocJBIgMBooMiYTHCoVHCUbIz0ZJiEjJyImKiIlLSInLCYmKiQnKygqLyQpMScvOyksMiksMykvNy0vNS4wNS8wNygxPCswPiwzOzE0OjI2OzI3PTU3OzQ6PyQxQi86RTM5QjY7QDQ8RTg8QDk8RDs+RjE/UD1ARz9CRz5ERz9BSD9CSjxDSzlIWUoiLUgqOVggNUA/R3ErQ0BDS0FFTUJGTkVIT0ZKT0ZJUEBPX0ZPW0pOVEpOVk1QVU5RV09SV09RWlFWWVZTWVVZXFZZXVVaXVVaXlZcXUVSY0lZZ05edlJXY1VYYFVZZFVfa1lcZFpdZVpeZVtfZl9ial9kal5lb1pndFtsfF9sfGBjamFkamBka2Blbmpxe21ye3NyeXJ1fHR3fnF4e3R4fW15i3V7hnl8hH1/iXuBhX2AhnyAh32BiH2CiIGGioGEjYGIj4OLlI6Vmo+WnZeYnZKaoZWcpqevuKWvuqiutKWwt62zuq20vK22vrKyubO2vbC3vrS2vba6vrW8vrO3wrW7w7e8wra8xrq9w7m/w7m/xbrAwrnAx8LFzMDFzsPM0dLW29ba3Nfd39jZ2djb3NTa4OLk6OXn6+fo5+Lo6ubp6e7z8/X29gAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAEAAP8ALAAAAAAgACAAAAj/ACUEAECwoMGDCBMGEJiwoUOEAx9KnEixosWLGDNq3Mix4QAEAUKKFClAQMSRBEeGTClgwICSARAkSFDyYwKQAFyaDDDAQICWB0oCQEAjzyUtJeJYqhQph4lGlCaBWXCgyKEYBjLoAfPByaMwXS4EWKCK3DFiOlx5S5esiRJz25htctChlbovDXxokxYFGLo3hiwIgNDLmiYpJWSg6oaEwhJztDIdMWAkm7haHoBgW3eq3LkQEBYIWOClGLdpQx54gvYjQJJv1IxBYXAmnKRoQnoocwZu2bgIIheIsdPnGRMKiobNGBCkWSI3RGCUioasmhkewUwJw3QtQkoFhHzxsmJkwwIaUi8i7JCF69YdHKzkLOnE54YoODWe5FqQksGeMXMQcsUWeAQyBRVWVAFJGWvUgYgaWCzSBheOsMAGGWlMUFAFsYRBhy2cfPLLK4D4IcgfqXACCiy2hDLILqsUoksWozAyCwYFHSACBxuQMAIJLpywAgoqpPBACEhqkEEIGmzQggskcDACCAYUFAABBhVQQEhaEqCSSAV0JOaYZJZp5plopqnmmmtGdOZCbpK5UEAAOw==
 // @license     MIT License; http://www.opensource.org/licenses/mit-license.php
 // @include     http://store.steampowered.com/app/*
 // @include     https://store.steampowered.com/app/*
@@ -26,8 +30,9 @@
 // @match       https://store.steampowered.com/sub/*
 // @match       http://store.steampowered.com/sale/*
 // @match       https://store.steampowered.com/sale/*
-// @grant       none
-// @require     https://userscripts.org/scripts/source/145813.user.js
+// @grant       GM_getValue
+// @grant       GM_setValue
+// @grant       GM_listValues
 // ==/UserScript==
 
 // To install save script to disk under name CompareSteamPrices.user.js and then open this file in Firefox

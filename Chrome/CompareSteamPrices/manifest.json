@@ -9,13 +9,13 @@
    } ],
    "converted_from_user_script": true,
    "name": "Steam Price Comparison - Unpowered edition",
-   "version": "2.4.4",
+   "version": "2.4.5",
    "manifest_version": 2,
 
    "description": "Displays prices from all regions in the Steam store and convert them to your local currency",
    "icons": { "16": "icon16.png",
            "48": "icon48.png",
           "128": "icon128.png" },
-   "homepage_url": " http://userscripts.org/scripts/show/149928",
+   "homepage_url": "https://greasyfork.org/scripts/3618-steam-price-comparison-unpowered-edition",
    "permissions": [ ]
 }
