@@ -1,0 +1,3 @@
+content	steampricecomparison	content/
+skin steampricecomparison classic/1.0 skin/
+overlay	chrome://browser/content/browser.xul	chrome://steampricecomparison/content/script-compiler-overlay.xul

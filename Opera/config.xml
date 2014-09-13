@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<widget xmlns="http://www.w3.org/ns/widgets">
+    <name>Steam Price Comparison - Unpowered edition</name>
+    <description>Displays prices from all regions in the Steam store and convert them to your local currency</description>
+    <author href="http://kinddragon.blogspot.com/">Arkady Shapkin</author>
+    <icon src="logo.png"/>
+</widget>

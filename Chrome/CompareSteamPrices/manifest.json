@@ -1,0 +1,21 @@
+{
+   "content_scripts": [ {
+      "exclude_globs": [  ],
+      "exclude_matches": [  ],
+      "include_globs": [ "http://store.steampowered.com/app/*", "https://store.steampowered.com/app/*", "http://store.steampowered.com/sub/*", "https://store.steampowered.com/sub/*", "http://store.steampowered.com/sale/*", "https://store.steampowered.com/sale/*" ],
+      "js": [ "CompareSteamPrices.user.js" ],
+      "matches": [ "http://store.steampowered.com/app/*", "http://store.steampowered.com/sub/*", "http://store.steampowered.com/sale/*", "https://store.steampowered.com/app/*", "https://store.steampowered.com/sub/*", "https://store.steampowered.com/sale/*" ],
+      "run_at": "document_idle"
+   } ],
+   "converted_from_user_script": true,
+   "name": "Steam Price Comparison - Unpowered edition",
+   "version": "2.4.4",
+   "manifest_version": 2,
+
+   "description": "Displays prices from all regions in the Steam store and convert them to your local currency",
+   "icons": { "16": "icon16.png",
+           "48": "icon48.png",
+          "128": "icon128.png" },
+   "homepage_url": " http://userscripts.org/scripts/show/149928",
+   "permissions": [ ]
+}

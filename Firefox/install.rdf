@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<RDF xmlns="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:em="http://www.mozilla.org/2004/em-rdf#">
+   <Description about="urn:mozilla:install-manifest">
+      <em:id>{f546c106-e3f8-4f49-863d-9c329572d03c}</em:id>
+      <em:name>Steam Price Comparison - Unpowered edition</em:name>
+	  <em:iconURL>chrome://steampricecomparison/skin/icon.png</em:iconURL>
+	  <em:icon64URL>chrome://steampricecomparison/skin/icon64.png</em:icon64URL>
+      <em:version>2.4.2</em:version>
+      <em:description>Displays prices from all regions in the Steam store and convert them to your local currency</em:description>
+      <em:creator>Arkady Shapkin</em:creator>
+      <em:contributor>Greasemonkey Compiler by Anthony Lieuallen;</em:contributor>
+      <em:contributor>http://arantius.com/</em:contributor>
+      <em:homepageURL>http://userscripts.org/scripts/show/149928</em:homepageURL>
+      <em:targetApplication>
+         <Description>
+            <em:id>{ec8030f7-c20a-464f-9b0e-13a3a9e97384}</em:id>
+            <em:minVersion>2.0</em:minVersion>
+            <em:maxVersion>19.*</em:maxVersion>
+         </Description>
+      </em:targetApplication>
+	  <em:type>2</em:type>
+   </Description>
+</RDF>
