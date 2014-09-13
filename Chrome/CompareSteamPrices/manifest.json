@@ -9,7 +9,8 @@
    } ],
    "converted_from_user_script": true,
    "name": "Steam Price Comparison - Unpowered edition",
-   "version": "2.4.5",
+   "short_name": "Steam Price Comparison",
+   "version": "2.4.6",
    "manifest_version": 2,
 
    "description": "Displays prices from all regions in the Steam store and convert them to your local currency",
