@@ -1,12 +1,13 @@
 // ==UserScript==
 // @name        Steam Price Comparison - Unpowered edition
-// @version     2.5.0
+// @version     2.5.1
 // @namespace   http://steamunpowered.eu/comparison-script/
 // @description Displays prices from all regions in the Steam store and convert them to your local currency
 // @copyright   2011+, KindDragon; 2010+, Zuko; Original author: Tor (http://code.google.com/p/steam-prices/)
 // @homepage    https://greasyfork.org/scripts/3618-steam-price-comparison-unpowered-edition
 // @updateURL   https://greasyfork.org/scripts/3618-steam-price-comparison-unpowered-edition/code/Steam%20Price%20Comparison%20-%20Unpowered%20edition.meta.js
 // @downloadURL https://greasyfork.org/scripts/3618-steam-price-comparison-unpowered-edition/code/Steam%20Price%20Comparison%20-%20Unpowered%20edition.user.js
+// @update  2.5.1 Several CSS rules fixed.
 // @update  2.5.0 Support Indonesia, Malaysia, Philippines, Singapore, Thailand, Canada, Korea, Mexico, Norway and Turkey prices.
 // @update  2.4.6 Support Japan prices. New option "yourBaseCountry".
 // @update  2.4.4 Russian price detection fixed. Settings now stored in GM settings.
@@ -98,7 +99,7 @@ var CIScc = "kz";
 //E.g. if set to 19, the script will increase US prices by 19%.
 var usVat = GM_getValue("usVat", 0);
 
-var usdValuePattern = new RegExp(/&#36;([\d\.]+) USD/i);
+var usdValuePattern = new RegExp(/&#36;([\d\.]+)(?: USD)?/i);
 var settings = {
     "US": {
         "country": [{
@@ -596,14 +597,15 @@ function init() {
         if (game_purchase_price)
             pricesStyle.insertRule(".game_area_purchase_game .game_purchase_action{height:auto;bottom:auto}", pricesStyle.cssRules.length);
         if (discount_final_price)
-            pricesStyle.insertRule(".game_purchase_action  .game_purchase_price, .game_purchase_discount{height:auto;padding-bottom:8px}", pricesStyle.cssRules.length);
-        pricesStyle.insertRule(".game_purchase_action_bg{height:auto;bottom:auto!important}", pricesStyle.cssRules.length);
-        pricesStyle.insertRule(".game_purchase_action  .game_purchase_price{height:auto;padding-bottom:8px}", pricesStyle.cssRules.length);
+            pricesStyle.insertRule(".game_purchase_discount{height:auto;padding-bottom:8px}", pricesStyle.cssRules.length);
+        pricesStyle.insertRule(".game_purchase_action .game_purchase_price{height:auto;padding-bottom:8px}", pricesStyle.cssRules.length);
+        pricesStyle.insertRule(".game_purchase_action.game_purchase_action_bg{height:auto}", pricesStyle.cssRules.length);
 
-        var margin = 14;
-        margin += 16 * pages.length;
+        var margin = 14 + 16 * pages.length;
         pricesStyle.insertRule(".game_area_purchase_game,.sale_page_purchase_package{margin-bottom:" + margin + "px!important}", pricesStyle.cssRules.length);
         pricesStyle.insertRule(".block.block_content{margin-bottom:" + margin + "px!important}", pricesStyle.cssRules.length);
+        var padding = 14 * pages.length;
+        pricesStyle.insertRule(".tab_item{padding-bottom:" + padding + "px}", pricesStyle.cssRules.length);
     }
 }
 
